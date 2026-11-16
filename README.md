@@ -1,11 +1,75 @@
 # Nadlan · Milwaukee Real Estate Analyzer
 
 A personal, single-user web app for finding, enriching and analyzing residential
-real estate deals in the City of Milwaukee, WI. The full specification (in Hebrew)
-is in [SPEC.md](SPEC.md); this README covers how to run and maintain the code.
+real estate deals in the City of Milwaukee, WI.
 
 **Status:** Phase 1 (infrastructure). The screens are placeholders; business
 features arrive in phases 2–6.
+
+**Project documents:** [SPEC.md](SPEC.md) (full specification, Hebrew) ·
+[Practice.md](Practice.md) (working rules, Git, approvals) ·
+[WORKLOG.md](WORKLOG.md) (session log). This README has two parts: a user guide
+in Hebrew, then the technical guide.
+
+---
+
+<div dir="rtl">
+
+## מדריך למשתמש
+
+המדריך מתעדכן בכל שלב, ומתאר רק יכולות שכבר קיימות במערכת.
+
+### מה המערכת עושה היום (שלב 1)
+
+התשתית קיימת: התחברות, תפריט, עמוד מצב מערכת וחיבור ל-Airtable. המסכים העסקיים עדיין זמניים, והם ייבנו בשלבים 2 עד 6.
+
+### כניסה למערכת
+
+1. פותחים את כתובת המערכת. במחשב שלך זו `http://localhost:3000`, ואחרי הפריסה תהיה גם כתובת ב-Vercel.
+2. לוחצים על **התחבר עם GitHub** ומאשרים ב-GitHub.
+3. רק חשבון ה-GitHub המורשה נכנס. כל דף שנפתח בלי התחברות מפנה למסך ההתחברות, ואחרי ההתחברות חוזרים לדף המבוקש.
+
+**הודעות במסך ההתחברות:**
+
+| הודעה | מה היא אומרת | מה עושים |
+| --- | --- | --- |
+| חשבון ה-GitHub הזה לא מורשה להיכנס למערכת | התחברת עם חשבון אחר | מתנתקים מ-GitHub ומתחברים עם החשבון המורשה |
+| הגדרות ההתחברות חסרות | חסרים מפתחות ההתחברות בהגדרות | בודקים את `.env.local`, או את ההגדרות ב-Vercel |
+
+### התפריט
+
+| פריט | מה יש בו היום |
+| --- | --- |
+| Dashboard | מסך זמני. mockup עם נתוני דמה קיים בענף `mockup/dashboard` ובעמוד הדמה (למטה) |
+| מאגר נכסים | מסך זמני (ייבנה בשלב 6) |
+| ניתוח נכס | מסך זמני (ייבנה בשלב 2) |
+| השוואה | מסך זמני (ייבנה בשלב 6) |
+| מצב מערכת | בדיקה חיה של ההגדרות ושל החיבור ל-Airtable |
+| התנתק | יציאה מהמערכת וחזרה למסך ההתחברות |
+
+### עמוד "מצב מערכת"
+
+העמוד בודק שלושה דברים בכל טעינה:
+
+- **הגדרות התחברות:** האם קיימים כל מפתחות ההתחברות.
+- **הגדרות Airtable:** האם קיימים הטוקן ומזהה הבסיס.
+- **חיבור ל-Airtable:** האם Airtable עונה ויש בבסיס את 12 הטבלאות.
+
+"תקין" בירוק אומר שהכל בסדר. "לא תקין" באדום מגיע עם הסבר. למשל, "חסר: AIRTABLE_TOKEN" אומר שהמפתח הזה לא הוזן. העמוד מציג רק את שמות ההגדרות, ואף פעם לא את הערכים שלהן.
+
+### עמוד הדמה הציבורי
+
+גרסה סטטית של ה-Dashboard עם נתונים מומצאים בלבד, שאפשר לשלוח לכל אחד: [buildwise123.github.io/nadlan](https://buildwise123.github.io/nadlan/). אין בה התחברות ואין בה קישורים למערכת האמיתית.
+
+### יבוא בשלבים הבאים
+
+ייבוא נכסים, ניתוח השקעה, העשרה בנתוני שכונה, השוואת נכסים והסבר על הסימונים (נתון ידני מול חיצוני, "חסר", רמת אמינות). כל יכולת תתועד כאן כשתיבנה.
+
+</div>
+
+---
+
+## Technical guide
 
 ## Stack
 
