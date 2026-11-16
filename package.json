@@ -11,7 +11,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "airtable:setup": "tsx --env-file=.env.local scripts/airtable-setup.ts"
+    "airtable:setup": "tsx --env-file=.env.local scripts/airtable-setup.ts",
+    "demo:export": "tsx scripts/export-demo.tsx && tailwindcss -i src/app/globals.css -o demo-site/styles.css --minify"
   },
   "dependencies": {
     "next": "16.4.6",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.65.1",
+    "@tailwindcss/cli": "4.3.3",
     "@tailwindcss/turbopack": "4.3.3",
     "@types/node": "^24.19.2",
     "@types/react": "^19",
