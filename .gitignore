@@ -46,3 +46,6 @@ next-env.d.ts
 # local test artifacts
 /playwright-report/
 /test-results/
+
+# local Claude Code preview config
+/.claude/

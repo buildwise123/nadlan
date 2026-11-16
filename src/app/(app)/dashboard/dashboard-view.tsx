@@ -17,6 +17,12 @@ import {
 const usd = (n: number) => `$${Math.round(n).toLocaleString("en-US")}`;
 const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
 const signedUsd = (n: number) => `${n < 0 ? "−" : ""}${usd(Math.abs(n))}`;
+/** "2026-11-15" or "2026-11-15 06:04" -> "15.11.2026" / "15.11.2026 06:04" */
+const ilDate = (iso: string) => {
+  const [date, time] = iso.split(" ");
+  const [y, m, d] = date.split("-");
+  return `${d}.${m}.${y}${time ? ` ${time}` : ""}`;
+};
 
 const TYPE_LABEL: Record<string, string> = {
   "Single Family": "צמוד קרקע",
@@ -33,7 +39,7 @@ const STATUS_STYLE = {
 
 function Num({ children, negative = false }: { children: React.ReactNode; negative?: boolean }) {
   return (
-    <span dir="ltr" className={`tabular-nums ${negative ? "text-red-700 dark:text-red-400" : ""}`}>
+    <span dir="ltr" className={`whitespace-nowrap tabular-nums ${negative ? "text-red-700 dark:text-red-400" : ""}`}>
       {children}
     </span>
   );
@@ -66,7 +72,7 @@ export function DashboardView() {
       <div>
         <h1 className="text-2xl font-semibold">Dashboard</h1>
         <p className="mt-1 text-sm text-muted">
-          תמונת מצב · נתונים נכון ל-<Num>{DATA_AS_OF}</Num>
+          תמונת מצב · נתונים נכון ל-<Num>{ilDate(DATA_AS_OF)}</Num>
         </p>
       </div>
 
@@ -106,15 +112,13 @@ export function DashboardView() {
               const down = c.newPrice < c.oldPrice;
               return (
                 <li key={c.propertyId + c.date} className="flex flex-col">
-                  <span className="font-medium" dir="ltr">
-                    {p.address}
-                  </span>
+                  <bdi className="font-medium">{p.address}</bdi>
                   <span className="text-muted">
                     <Num>{usd(c.oldPrice)}</Num> ← <Num>{usd(c.newPrice)}</Num>{" "}
                     <span className={down ? "text-green-700 dark:text-green-400" : "text-red-700 dark:text-red-400"}>
                       ({down ? "ירידה" : "עלייה"})
                     </span>{" "}
-                    · <Num>{c.date}</Num>
+                    · <Num>{ilDate(c.date)}</Num>
                   </span>
                 </li>
               );
@@ -126,9 +130,7 @@ export function DashboardView() {
           <ul className="flex flex-col gap-2 text-sm">
             {fresh.map((p) => (
               <li key={p.id} className="flex flex-col">
-                <span className="font-medium" dir="ltr">
-                  {p.address}
-                </span>
+                <bdi className="font-medium">{p.address}</bdi>
                 <span className="text-muted">
                   {p.neighborhood} · {TYPE_LABEL[p.type]} · <Num>{usd(p.price)}</Num> · לפני {p.daysListed} ימים
                 </span>
@@ -156,8 +158,8 @@ export function DashboardView() {
             <tbody>
               {top.map((p) => (
                 <tr key={p.id} className="border-b border-border last:border-0">
-                  <td className="py-2 font-medium" dir="ltr">
-                    {p.address}
+                  <td className="py-2 font-medium">
+                    <bdi>{p.address}</bdi>
                   </td>
                   <td className="py-2">{p.neighborhood}</td>
                   <td className="py-2">{TYPE_LABEL[p.type]}</td>
@@ -189,7 +191,7 @@ export function DashboardView() {
                 <td className="py-2 font-medium">{run.source}</td>
                 <td className={`py-2 ${STATUS_STYLE[run.status].className}`}>{STATUS_STYLE[run.status].label}</td>
                 <td className="py-2 text-muted">
-                  <Num>{run.finishedAt}</Num>
+                  <Num>{ilDate(run.finishedAt)}</Num>
                 </td>
                 <td className="py-2 text-muted">{run.detail}</td>
               </tr>
