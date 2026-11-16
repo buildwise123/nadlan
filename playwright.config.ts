@@ -6,7 +6,7 @@ import { defineConfig, devices } from "@playwright/test";
  * fake allowed user id, so tests can mint a session without GitHub.
  * Variables set here take precedence over .env.local.
  */
-export const E2E_SECRET = "e2e-only-secret-not-used-anywhere-else-0123456789";
+export const E2E_SECRET = "e2e-only-secret-not-used-anywhere-else-0123456789"; // gitleaks:allow (test-only value)
 export const E2E_USER_ID = "4242";
 const PORT = 3200;
 
