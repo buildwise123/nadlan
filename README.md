@@ -2,7 +2,7 @@
 
 A personal, single-user web app for finding, enriching and analyzing residential
 real estate deals in the City of Milwaukee, WI. The full specification (in Hebrew)
-lives in the project's Claude Doc; this README covers how to run and maintain the code.
+is in [SPEC.md](SPEC.md); this README covers how to run and maintain the code.
 
 **Status:** Phase 1 (infrastructure). The screens are placeholders; business
 features arrive in phases 2–6.
