@@ -46,6 +46,14 @@ test.describe("the allowed user", () => {
     await expect(page.getByRole("heading", { name: "Dashboard" })).toBeVisible();
   });
 
+  test("dashboard mockup shows the demo banner and its sections", async ({ page }) => {
+    await page.goto("/dashboard");
+    await expect(page.getByRole("note")).toContainText("תצוגת דמה");
+    await expect(page.getByRole("list", { name: "מדדים עיקריים" }).getByRole("listitem")).toHaveCount(4);
+    await expect(page.getByRole("heading", { name: /10 הנכסים המובילים/ })).toBeVisible();
+    await expect(page.locator("table").first().locator("tbody tr")).toHaveCount(10);
+  });
+
   test("can open every screen from the menu", async ({ page }) => {
     await page.goto("/dashboard");
     const nav = page.getByRole("navigation", { name: "ניווט ראשי" });

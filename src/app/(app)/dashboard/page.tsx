@@ -1,7 +1,8 @@
-import { Placeholder } from "../placeholder";
+import { DashboardView } from "./dashboard-view";
 
 export const metadata = { title: "Dashboard · Nadlan" };
 
+// Mockup with demo data (see mock-data.ts). Real Airtable data arrives in phase 6.
 export default function DashboardPage() {
-  return <Placeholder title="Dashboard" phase={6} description="תמונת מצב: נכסים חדשים, שינויי מחיר ונכסים מובילים לפי תשואה." />;
+  return <DashboardView />;
 }
