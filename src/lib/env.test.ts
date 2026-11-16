@@ -43,8 +43,8 @@ describe("env", () => {
 
   it("rejects a malformed Airtable base id", () => {
     expect(() => airtableEnv({ AIRTABLE_TOKEN: "pat123", AIRTABLE_BASE_ID: "nope" })).toThrowError(/AIRTABLE_BASE_ID/);
-    expect(airtableEnv({ AIRTABLE_TOKEN: "pat123", AIRTABLE_BASE_ID: "appABCDEFGHIJKLMN" }).AIRTABLE_BASE_ID).toBe(
-      "appABCDEFGHIJKLMN",
+    expect(airtableEnv({ AIRTABLE_TOKEN: "pat123", AIRTABLE_BASE_ID: "appABCDEFGHIJKLMN" }).AIRTABLE_BASE_ID).toBe( // gitleaks:allow (fake test id)
+      "appABCDEFGHIJKLMN", // gitleaks:allow (fake test id)
     );
   });
 

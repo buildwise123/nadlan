@@ -1,0 +1,6 @@
+# Findings reviewed and confirmed as fake test values (not real secrets).
+# Each line is a gitleaks fingerprint: commit:file:rule:line.
+# The current versions of these lines carry an inline "gitleaks:allow" comment.
+4a313e77c3cacefe31aa0d1e0bc1a8d5c8a2a9e7:src/lib/airtable/client.test.ts:generic-api-key:16
+906dbd48d48f5ef44ca7172e5302f0445355e065:src/lib/env.test.ts:airtable-api-key:46
+7e8cfefc3e9691e5f1a0b7ed0c39641e827b2a2c:src/lib/logger.test.ts:generic-api-key:26

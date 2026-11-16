@@ -13,7 +13,7 @@ const URL_ = `https://api.airtable.com/v0/${BASE}/Properties`;
 
 function makeClient(sleeps: number[] = [], clock = { t: 0 }) {
   return new AirtableClient({
-    token: "patSECRET123456789",
+    token: "patSECRET123456789", // gitleaks:allow (fake test token)
     sleep: async (ms) => {
       sleeps.push(ms);
       clock.t += ms;

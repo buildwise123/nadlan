@@ -23,7 +23,7 @@ describe("logger", () => {
   it("redacts secret-looking keys in log objects", () => {
     const { lines, destination } = capture();
     const log = createLogger({ level: "info", destination, secrets: [] });
-    log.info({ token: "pat-123456789", request: { headers: { authorization: "Bearer abc" }, apiKey: "k-987654321" } });
+    log.info({ token: "pat-123456789", request: { headers: { authorization: "Bearer abc" }, apiKey: "k-987654321" } }); // gitleaks:allow (fake test values)
     const line = JSON.stringify(lines[0]);
     expect(line).not.toContain("pat-123456789");
     expect(line).not.toContain("Bearer abc");
